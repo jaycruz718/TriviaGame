@@ -61,3 +61,24 @@
 - GET top scores
 - DELETE games
 
+### Practice Setting Up Server
+### Dependencies
+- Express
+- Mongoose
+- dotenv
+- nodemon
+-cors (not necessary now, but when we connect the front to back we will need it)
+
+### Middleware
+- Global Error Handling
+- Loggin middleware
+- Parsing Middleware - express.json()
+
+### Environmental Variables
+- PORT
+- MongoURI 
+
+### Collections/Schemas
+- Questions
+- Users/Admin
+- Game 
