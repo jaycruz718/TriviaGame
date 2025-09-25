@@ -67,7 +67,7 @@
 - Mongoose
 - dotenv
 - nodemon
--cors (not necessary now, but when we connect the front to back we will need it)
+- cors (not necessary now, but when we connect the front to back we will need it)
 
 ### Middleware
 - Global Error Handling

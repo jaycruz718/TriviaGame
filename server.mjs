@@ -3,6 +3,8 @@ import express from "express";
 import dotenv from "dotenv";
 import { globalErr, log } from "./middleware/middleware.mjs";
 import connectDB from "./db/conn.mjs";
+import usersSchema from "./models/usersSchema.mjs";
+
 
 // Setups
 dotenv.config();
@@ -18,6 +20,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(log);
 
 // Routes
+app.use("/api/users", usersSchema);
+// app.use("/api/game", gameSchema);
+// app.use("/api/question", questionSchema);
 
 // Global Err Handling
 app.use(globalErr);
