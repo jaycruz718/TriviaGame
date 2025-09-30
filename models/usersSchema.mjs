@@ -33,8 +33,8 @@ const usersSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Badge"
     }],
-    incorrectQuestions: [{
-            type: Schema.Types.ObjectId,
+    wrongQuestions: [{
+            type: mongoose.Schema.Types.ObjectId,
             ref: "Question"
         
     }]

@@ -9,10 +9,11 @@ const gameSchema = new mongoose.Schema({
         validate: {
             validator: async function (userId) {
                 const user = await mongoose.models.User.findById({ _id: userId });
-                return !!user
+                return !!user // If user exists continue, else throw error
             },
-            message: (props) => `This user with ${props.path}:${props.value} does not exist`
-        }
+            message: (props) => `This user with ${props.path}:${props.value} does not exist`,
+        },
+        
     },
     category: {
         type: mongoose.Schema.Types.ObjectId,
@@ -22,8 +23,8 @@ const gameSchema = new mongoose.Schema({
                 const category = await mongoose.models.Category.findById({ _id: categoryId });
                 return !!category
             },
-            message: (props) => `This category with ${props.path}:${props.value} does not exist`
-        }
+            message: (props) => `This category with ${props.path}:${props.value} does not exist`,
+        },
     },
     score: {
         type: Number,
@@ -35,8 +36,9 @@ const gameSchema = new mongoose.Schema({
         required: true,
     },
 }, { timestamps: true });
-//Index
 
+//Index
+gameSchema.index({ category: 1, score: -1})
 
 //export
 export default mongoose.model("Game", gameSchema);

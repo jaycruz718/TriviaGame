@@ -48,18 +48,35 @@
 
 
 ### Question Routes
+**Group 1**
 - GET question(s) by category/theme
 - POST create question(s) route (will need admin middleware)
+- GET All Questions
+    - Get categoryID from category
+    - See if categoryID exists
+    - If it doesn't create a new
+    - Take categoryID add it to question object
+    - Save to Database (DB)
+**Group 2**
 - DELETE question(s) route (admin middleware)
+- DELETE questions by category (admin middleware)
+**Group 3**
+- Get all Questions
 - PUT/PATCH edit question route (admin middleware)
+
+### Category Routes
+- GET all Categories
+- PUT/PATCH categories (admin middleware)
 
 ### Game Routes
 - POST create new game
 - PUT update/end game
 - PUT check question speed
-- GET current/past game information
-- GET top scores
-- DELETE games
+- GET current/past game information by userID (order from newest to oldest)
+- GET top scores (limit(10))
+- GET top scores by category (limit(10))
+- DELETE games by id
+- DELETE by Category
 
 ### Practice Setting Up Server
 ### Dependencies
@@ -82,3 +99,10 @@
 - Questions
 - Users/Admin
 - Game 
+
+### GIT Commands for This Project 
+- `GIT Clone <URL>`: clone legacy code repo
+- `GIT checkout -b`: <new-branch-name>: created a new branch and switch to it
+- `GIT branch`: allows us to view all branches
+- `GIT checkout<branch-name>`: switch branches
+- `GIT pull origin main`: pulls changes from github to your local main branch

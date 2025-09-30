@@ -1,14 +1,16 @@
 
 import mongoose from "mongoose";
 
-const questionSchema = mongoose.Schema[{
+const questionSchema = new mongoose.Schema[{
     question: {type: String, required: true},
     options: [{
         type: String,
         // enum: ["option a", "option b", "option c", "option d"],
         required: true}],
-    correctAnswer: {type: String, required: true},
-    points: {type: String, required: true},
+    correctAnswer: {type: String, 
+                    required: true},
+    points: {type: String, 
+             required: true},
     difficulty: {type: String,
         enum: ["Easy", "Intermediate", "Hard", "Legend"],
         required: true},
@@ -18,7 +20,7 @@ const questionSchema = mongoose.Schema[{
 }];
 
 // Create Index
-questionSchema.index ({ question: 1 });
+// questionSchema.index ({ question: 1 });
 questionSchema.index ({ genre: 1 });
 
-export default mongoose.model("Questions", questionSchema);
+export default mongoose.model("Question", questionSchema);
