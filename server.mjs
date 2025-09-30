@@ -3,11 +3,8 @@ import express from "express";
 import dotenv from "dotenv";
 import { globalErr, log } from "./middleware/middleware.mjs";
 import connectDB from "./db/conn.mjs";
-import users from "./routes/usersRoutes.mjs";
-import category from "./routes/categoryRoutes.mjs";
-import usersSchema from "./models/usersSchema.mjs";
-// import gameSchema from "./models/gameSchema.mjs";
-// import questionSchema from "./models/questionSchema.mjs";
+import questionRoutes from "./routes/questionRoutes.mjs";
+import categoryRoutes from "./routes/categoryRoutes.mjs";
 
 
 
@@ -21,14 +18,12 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(log);
 
 // Routes
-app.use("/api/users", users);
-app.use("/api/category", category); 
-// app.use("/api/game", gameSchema);
-// app.use("/api/question", questionSchema);
+app.use("/api/question", questionRoutes);
+app.use("/api/category", categoryRoutes);
+
 
 // Global Err Handling
 app.use(globalErr);

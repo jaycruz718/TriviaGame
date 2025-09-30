@@ -1,26 +1,42 @@
-
 import mongoose from "mongoose";
 
-const questionSchema = new mongoose.Schema[{
-    question: {type: String, required: true},
-    options: [{
+const questionSchema = new mongoose.Schema(
+  {
+    questionText: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    correctAnswer: {
+      type: String,
+      required: true,
+    },
+    options: [
+      {
         type: String,
-        // enum: ["option a", "option b", "option c", "option d"],
-        required: true}],
-    correctAnswer: {type: String, 
-                    required: true},
-    points: {type: String, 
-             required: true},
-    difficulty: {type: String,
-        enum: ["Easy", "Intermediate", "Hard", "Legend"],
-        required: true},
-    category: { type: mongoose.isObjectId, ref: "category", required: true},
-    genre: {type: String,
-            enum: ["Thriller", "Rom-Con", "Anime", "Horror", "Action", "Drama", "Mystery"]}
-}];
-
-// Create Index
-// questionSchema.index ({ question: 1 });
-questionSchema.index ({ genre: 1 });
+      },
+    ],
+    categoryId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+      index: true,
+    },
+    // difficulty: {
+    //   type: String,
+    //   enum: ["easy", "medium", "hard"],
+    // },
+    // points: {
+    //   type: Number,
+    //   default: 1,
+    // },
+    // genre: {
+    //   type: String,
+    //   enum: ["Fantasy", "Sci-Fi", "Comics", "Horror", "Video Games"],
+    // },
+  },
+  { timestamps: true }
+);
+// questionSchema.index({ genre: 1 });
 
 export default mongoose.model("Question", questionSchema);

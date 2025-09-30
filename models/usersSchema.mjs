@@ -1,47 +1,42 @@
-import dotenv from "dotenv";
-dotenv.config();
 import mongoose from "mongoose";
 
-
-const { Schema, Types } = mongoose;
-
-const usersSchema = new Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true,
-        maxlength: 13,
-        minlength: 2
-    },
-    isAdmin: {
-        type: Boolean,
-        default: false
+const userSchema = new mongoose.Schema(
+  {
+    userName: {
+      type: String,
+      required: true,
+      unique: true,
+      minlength: 4,
+      lowercase: true,
     },
     email: {
-        type: String,
-        required: [true, 'Email address is required']
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
     },
     password: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
+      // select: false, 
     },
-    timeStamp: {
-        type: Date,
-        default: Date.now
+    isAdmin: {
+      type: Boolean,
+      default: false,
     },
-    badges: [{
-        type: Schema.Types.ObjectId,
-        ref: "Badge"
-    }],
-    wrongQuestions: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Question"
-        
-    }]
-});
+    // badges: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: ‘Badge’,
+    //     required: false
+    // }],
+    wrongQuestions: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Question",
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
-// Indexes
-usersSchema.index({ username: 1 });
-usersSchema.index({ isAdmin: 1 });
-
-export default mongoose.model("User", usersSchema);
+export default mongoose.model("User", userSchema);
